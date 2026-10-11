@@ -1,12 +1,21 @@
 const express = require('express');
 const app = express();
 
-app.use("/",(req,res)=>{
-    res.send("Home Page");
-});
-
-app.use("/login",(req,res)=>{
-    res.send("Login Pageeeee");
+app.use("/user",(req,res,next)=>{
+   
+    console.log("Middleware 1");
+    // res.send("Home Page");
+    next();
+},
+(req,res,next)=>{
+    // res.send("About Page");
+    console.log("Middleware 2");
+    next();
+},
+(req,res,next)=>{
+    res.send("Contact Page");
+    console.log("Middleware 3");
+    next();
 });
 
 
